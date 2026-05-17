@@ -58,30 +58,25 @@ mkdir -p .claude && ln -s ../skills .claude/skills
 ## 文件结构
 
 ```
-创作工具箱/
+creation-toolbox/
 ├── README.md
-├── skills/                              # 标准 skill 分享目录
-│   ├── story-creator/
-│   │   ├── SKILL.md
-│   │   ├── references/                  # 按需加载
-│   │   └── tests/
-│   └── ai-video-prompt/
-│       ├── SKILL.md
-│       ├── references/                  # 按需加载
-│       │   ├── narrative-economy.md     # 叙事经济学（主次取舍 / 省略 / 侧面）
-│       │   ├── script-to-storyboard.md  # 剧本分镜骨架
-│       │   ├── shot-prompt-templates.md # 单场次 prompt 模板
-│       │   ├── camera-movements.md      # 运镜参考
-│       │   ├── lighting.md              # 光线参考
-│       │   ├── shot-size-and-angle.md   # 景别角度参考
-│       │   ├── composition-and-depth.md # 构图景深参考
-│       │   └── pacing-and-duration.md   # 节奏时长参考
-│       └── tests/
-├── docs/
-│   ├── 交付物格式规范.md                # 项目规范
-│   ├── specs/                          # 设计文档
-│   └── deliveries/                     # 交付报告
-└── 阅读笔记/                            # 设计灵感来源（Harness 知识沉淀 / Agent Skill 规范）
+└── skills/                              # 标准 skill 分享目录
+    ├── story-creator/
+    │   ├── SKILL.md
+    │   ├── references/                  # 按需加载
+    │   └── tests/
+    └── ai-video-prompt/
+        ├── SKILL.md
+        ├── references/                  # 按需加载
+        │   ├── narrative-economy.md     # 叙事经济学（主次取舍 / 省略 / 侧面）
+        │   ├── script-to-storyboard.md  # 剧本分镜骨架
+        │   ├── shot-prompt-templates.md # 单场次 prompt 模板
+        │   ├── camera-movements.md      # 运镜参考
+        │   ├── lighting.md              # 光线参考
+        │   ├── shot-size-and-angle.md   # 景别角度参考
+        │   ├── composition-and-depth.md # 构图景深参考
+        │   └── pacing-and-duration.md   # 节奏时长参考
+        └── tests/
 ```
 
 ## 设计原则
