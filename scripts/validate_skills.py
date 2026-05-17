@@ -92,25 +92,25 @@ def validate_skill(skill_dir):
 
     fm_text = extract_frontmatter(content)
     if fm_text is None:
-        errors.append("SKILL.md 没有 YAML frontmatter（缺 --- 标记）")
+        errors.append("SKILL.md missing YAML frontmatter (no --- markers)")
         return errors, warnings
 
     fields = parse_frontmatter_fields(fm_text)
 
     name = fields.get("name", "").strip()
     if not name:
-        errors.append("缺必填字段: name")
+        errors.append("missing required field: name")
     elif name != dir_name:
-        errors.append(f"name '{name}' 跟目录名 '{dir_name}' 不一致")
+        errors.append(f"name '{name}' does not match directory '{dir_name}'")
 
     desc = fields.get("description", "").strip()
     if not desc:
-        errors.append("缺必填字段: description")
+        errors.append("missing required field: description")
     elif len(desc) < 30:
-        warnings.append(f"description 太短（{len(desc)} 字符）——建议含触发条件，让 AI 知道何时调用")
+        warnings.append(f"description too short ({len(desc)} chars) - should include trigger conditions for the agent")
 
     if "license" not in fields:
-        warnings.append("建议加 license 字段")
+        warnings.append("missing recommended field: license")
 
     # 扫描所有文件的 secret
     for root, dirs, files in os.walk(skill_dir):
@@ -123,7 +123,7 @@ def validate_skill(skill_dir):
             findings = scan_secrets(filepath)
             for line_no, sdesc, matched in findings:
                 rel = os.path.relpath(filepath, skill_dir)
-                errors.append(f"{rel}:{line_no} 可能的硬编码 secret ({sdesc}): {matched}")
+                errors.append(f"{rel}:{line_no} possible hardcoded secret ({sdesc}): {matched}")
 
     return errors, warnings
 
@@ -134,12 +134,12 @@ def main():
     args = ap.parse_args()
 
     if not os.path.isdir(args.path):
-        print(f"❌ 路径不存在: {args.path}")
+        print(f"ERROR: path does not exist: {args.path}")
         sys.exit(1)
 
     skill_dirs = find_skill_dirs(args.path)
     if not skill_dirs:
-        print(f"⚠️  路径 {args.path} 下没找到任何 SKILL.md")
+        print(f"WARN: no SKILL.md found under {args.path}")
         sys.exit(0)
 
     total_errors = 0
@@ -160,7 +160,7 @@ def main():
                 total_warnings += 1
 
     print()
-    print(f"汇总: {len(skill_dirs)} 个 skill, {total_errors} 错误, {total_warnings} 警告")
+    print(f"Summary: {len(skill_dirs)} skill(s), {total_errors} error(s), {total_warnings} warning(s)")
     sys.exit(1 if total_errors else 0)
 
 
