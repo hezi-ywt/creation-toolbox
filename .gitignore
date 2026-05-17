@@ -29,3 +29,6 @@ npm-debug.log*
 # 个人本地（不要 sync）
 .local/
 *.private.md
+
+# 本地 Claude Code 通过 junction 指向 skills/，不重复跟踪
+.claude/skills/
