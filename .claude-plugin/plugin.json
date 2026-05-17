@@ -1,0 +1,23 @@
+{
+  "name": "creation-toolbox",
+  "description": "Claude Code 创作工具箱：story-creator（故事创意）+ ai-video-prompt（AI 视频分镜与 Seedance 提示词）",
+  "version": "0.1.0",
+  "author": {
+    "name": "hezi-ywt"
+  },
+  "homepage": "https://github.com/hezi-ywt/creation-toolbox",
+  "repository": "https://github.com/hezi-ywt/creation-toolbox",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "ai-video",
+    "seedance",
+    "storyboard",
+    "screenwriting",
+    "video-prompt",
+    "creative",
+    "story-creator",
+    "claude-code",
+    "chinese"
+  ]
+}

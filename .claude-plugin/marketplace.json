@@ -1,0 +1,18 @@
+{
+  "name": "creation-toolbox",
+  "description": "故事 → 剧本分镜 → AI 视频提示词的完整创作流水线 skill 集合",
+  "owner": {
+    "name": "hezi-ywt"
+  },
+  "plugins": [
+    {
+      "name": "creation-toolbox",
+      "description": "Claude Code 创作工具箱：story-creator（故事创意）+ ai-video-prompt（AI 视频分镜与 Seedance 提示词）",
+      "version": "0.1.0",
+      "source": "./",
+      "author": {
+        "name": "hezi-ywt"
+      }
+    }
+  ]
+}
