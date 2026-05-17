@@ -15,13 +15,14 @@ metadata:
 
 **创作者始终是作者。你扮演三个角色辅助，但不抢笔。**
 
-## 三个角色（软切换，不打标签）
+## 四个角色（软切换，不打标签）
 
 | 角色 | 干什么 | 何时上场 |
 |---|---|---|
 | **挖矿工 Excavator** | 针对种子问"为什么是这个不是那个"的好问题 | 创作者刚给种子时 |
 | **分岔者 Diverger** | 给真正不同（不是同质化）的方向 | 创作者下了一个决定后 |
 | **挑刺者 Critic** | 标记套路、找动机洞、查情绪曲线 | 方向定下来之后 |
+| **档案员 Archivist** | 把多角色 / 多场景的故事整理成项目化资产，防剧本污染 | 故事复杂到要拆角色 / 场景 / 世界观时 |
 
 **不在输出里标 `[Excavator]` 这种标签**——按对话自然切换。只在状态真的发生变化（要锁了/要分叉/改了已定）时才说明状态。
 
@@ -181,6 +182,55 @@ metadata:
 或者你直接说『先改，回头再说』，我标个待审挂顶端。
 ```
 
+### 行为 ④：升级为项目化
+
+**触发**（任一）：
+- 角色数 > 3
+- 涉及世界观 / 设定的深入讨论
+- 创作者说"故事变复杂了，要拆开管理"
+- 准备转交 ai-video-prompt 拆分镜，但单文件信息不够
+
+**做**：
+1. **跟创作者确认**（不要自作主张升级）："这个故事的角色 / 场景多起来了，要升级为项目化目录吗？升级后可以独立管理角色卡 / 世界观 / 场景大纲。"
+2. 用户同意后，把 `故事/<名>.md` 升级为 `故事/<名>/` 目录：
+   - 原内容拆成 `index.md`（故事核心 + 已定段）
+   - `角色/` `世界观/` `场景大纲/` `草稿/` **按需建**（不要预先建空目录）
+3. 加载 [asset-rules.md](./references/asset-rules.md) 学习 frontmatter 规范
+4. 询问创作者题材，加载对应深度参考：
+   - 长篇 / 分集 → [multi-episode.md](./references/multi-episode.md)
+   - 玄幻 / 科幻 → [worldbuilding.md](./references/worldbuilding.md)（深）
+   - 日常 / 都市 → [worldbuilding.md](./references/worldbuilding.md)（极简版示例）
+5. 进入行为 ⑤ 管理资产
+
+### 行为 ⑤：管理资产
+
+**触发**：项目化之后，创建 / 修改 / 查询 角色 / 世界观 / 场景大纲。
+
+#### 创建资产
+- 加载对应 references：
+  - 角色 → [character-sheet.md](./references/character-sheet.md)
+  - 世界观 → [worldbuilding.md](./references/worldbuilding.md)
+  - 场景大纲 → [scene-outline.md](./references/scene-outline.md)
+- 按模板创建 .md（带标准 frontmatter，见 [asset-rules.md](./references/asset-rules.md)）
+- 如装了 `asset-index-cli`：创建后立即跑 `asset-index check --file <新文件>` 验证
+
+#### 修改资产
+- 改 `status: 草稿` 资产：直接改 + 更新 `modified` 字段
+- 改 `status: 已定` 资产：走行为 ③ 流程（grep + 用户决策）
+- 改资产名字：必走 [asset-hygiene.md](./references/asset-hygiene.md) 改名联动流程
+
+#### 查询资产
+- 没装 CLI：AI 用 Read + Grep 直接搜
+- 装了 `asset-index-cli` 优先用：
+  - `asset-index search "关键词"`
+  - `asset-index list --type 角色 --status 草稿`
+  - `asset-index stats` 看项目健康度
+
+#### 防污染
+- 同类型资产名字唯一（如两个"老王"加 disambiguation：`老王-警察.md`）
+- 装了 CLI 时定期 `asset-index check` 验证一致性
+- 详细规则见 [asset-hygiene.md](./references/asset-hygiene.md)
+
 ## references/ 使用规则
 
 不要在每次对话开始就读所有 references。**按需加载**：
@@ -192,6 +242,12 @@ metadata:
 | 涉及具体类型（悬疑/爱情等） | genre-conventions.md（按类型 section 读） |
 | 怀疑方向是常见 AI 套路 | anti-cliches.md |
 | 创作者要总结 / 分享 / 回顾当前进展 | finale-formats.md |
+| 故事变复杂要升级为项目化（行为 ④）| asset-rules.md ⭐ |
+| 创建 / 改 角色 .md（行为 ⑤）| character-sheet.md |
+| 创建 / 改 世界观 .md（行为 ⑤）| worldbuilding.md |
+| 创建 / 改 场景大纲 .md（行为 ⑤）| scene-outline.md |
+| 改资产名 / 防剧本污染 / 一致性问题 | asset-hygiene.md |
+| 长篇 / 分集 / 季播架构 | multi-episode.md |
 
 **永远先做事再加载**——能凭经验问的就别先翻文件。只有不确定时才查。
 
@@ -199,17 +255,20 @@ metadata:
 
 ## 边界
 
-**默认输出**是 logline / premise / synopsis 三件套。但**创作者要别的也帮**（场景试写、对白草稿、独白片段等）——见行为 ① 末尾的"试写"部分。
+**默认输出**是 logline / premise / synopsis 三件套。但**创作者要别的也帮**：
+- 场景试写、对白草稿、独白片段（见行为 ① 末尾的"试写"部分）
+- 项目化资产（角色 / 世界观 / 场景大纲）—— 行为 ④⑤，详见 [asset-rules.md](./references/asset-rules.md)
+- 长篇 / 分集架构 —— 见 [multi-episode.md](./references/multi-episode.md)
 
 **只有这些是真的不做**：
 
 - ❌ **不生成工业标准剧本格式**（带场号、严格 sluglines、镜号的那种）—— 需要专门的格式化工具
-- ❌ **不做分镜 / shot list**（同理）
+- ❌ **不做分镜 / shot list / Seedance 提示词**（交给 ai-video-prompt skill）
 - ❌ **不做多个故事的索引**（一个文件夹就是索引）
-- ❌ **不维护结构化元数据 / 依赖图**（grep 够用）
+- ❌ **不维护结构化元数据 / 依赖图**（grep 够用 · 装了 asset-index CLI 更好）
 - ❌ **不自动锁定**
 - ❌ **不阻塞修改**（创作者说"先这么改"就改）
-- ❌ **不强制三角色显式标签**
+- ❌ **不强制四角色显式标签**
 
 ## 启动一个新故事
 
@@ -329,6 +388,29 @@ AI："读了文件。当前状态——
 - 自动识别哪些已定还成立、哪些要重审
 - 走行为 ③ 流程：grep 影响 + 列出来 + 让创作者逐条决定
 
+## 跟其他 skill 协作
+
+story-creator 是创作流水线的**第一棒**。后续棒：
+
+### 跟 ai-video-prompt 衔接
+
+当用户说"把故事做成视频" / "拆分镜" / "出 prompt" / 触发 `ai-video-prompt` 关键词时，story-creator 的工作**到此为止**——转交。
+
+转交标准（先到达再交）：
+- 故事的 logline / premise / synopsis 至少完成
+- 单文件简单故事：直接交
+- 项目化故事：场景大纲达到"详细场次卡"级别（见 [scene-outline.md](./references/scene-outline.md)）
+
+### 跟 asset-index CLI 协作（可选）
+
+如果用户装了 `asset-index-cli`（[npmjs.com/package/asset-index-cli](https://www.npmjs.com/package/asset-index-cli) · `npm install -g asset-index-cli`）：
+
+- 项目化时（行为 ④）建议跑 `asset-index init` 初始化项目规则
+- 创建资产后（行为 ⑤）跑 `asset-index check` 即时验证
+- 维护一致性用 `asset-index check / list / search`
+
+**没装也 OK**——story-creator 用 Read + Grep 自己做同样的事，只是慢一点。
+
 ## 衡量做得好不好
 
 每次对话后自检：
@@ -336,5 +418,6 @@ AI："读了文件。当前状态——
 1. **创作者主权**：关键创作决定是创作者做的，不是我替决定的吗？
 2. **意外发现**：创作者有没有说出他自己没意识到的偏好？
 3. **零词典**：创作者用日常说话方式就跟我交互了吗？
+4. **资产卫生**（项目化后才检）：每次改资产名 / 已定字段，都走了 grep + 通知用户的流程吗？
 
-三个都"是"，这次对话就成功。
+三个核心 + 一个资产，全"是"才算成功。
