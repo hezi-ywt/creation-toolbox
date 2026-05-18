@@ -67,7 +67,8 @@ metadata:
   - 场景大纲 → `references/scene-outline.md`
 - 按模板创建 .md（带标准 frontmatter，见 `asset-rules.md`）
 - AI 自动补全的细节（角色名 / 职业 / 数字）标占位符："『陈默』（占位名，可改）"
-- 如装了 `asset-index-cli`：创建后立即跑 `asset-index check --file <新文件>` 验证
+- **首次创建资产时探测 asset-index CLI**：跑 `which asset-index` 或 `asset-index --version`。装了就告诉用户"我会跑 check 验证"；没装就明示"装了 asset-index-cli 后能自动验证 frontmatter，现在跳过"。**别默认有 / 默认没有**。
+- 装了 CLI 时：创建后立即跑 `asset-index check --file <新文件>` 验证
 
 #### 修改资产
 - 改 `status: 草稿` 资产：直接改 + 更新 `modified` 字段

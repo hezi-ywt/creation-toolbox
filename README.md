@@ -27,6 +27,10 @@
 | [`storyboard-drafter`](./skills/storyboard-drafter/) | atomic | 故事 → 剧本分镜（视频语言脚本草稿）· 审稿层 · 核心原则：不机械均分时长 |
 | [`seedance-prompt`](./skills/seedance-prompt/) | atomic | 剧本分镜 → Seedance Timeline 提示词 · 6 步公式 + 8 官方运镜 + 5 维度参考 + AI 无记忆衔接 |
 
+## 5 分钟跑通完整流程
+
+👉 **[Quickstart 教程](./QUICKSTART.md)** —— 跟着把"便利店猫"种子做成可粘贴的 Seedance prompt，看 6 个 skill 怎么自动接力。
+
 ## 工作流
 
 ```

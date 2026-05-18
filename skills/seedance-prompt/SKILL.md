@@ -90,7 +90,20 @@ AI 视频 prompt 是**工程**——不是文学。
 
 同时写 `dolly in + pan right + tilt up` 必崩。复杂运镜组合 → 拆段生成 + 后期剪辑。
 
-### 5. 危险词清单
+### 5. avoid 来源标注（透明度）
+
+prompt 末尾的 `avoid: ...` 里如果有条目是**用户的已定决策**而非通用规则，要在 prompt 后加一行说明：
+
+```
+avoid: watch dial close-up, fast motion, dramatic music swell
+
+注：「watch dial close-up」是因为你刚定的「第 1 集不让观众看清表盘细节」。
+其他是通用避免词。
+```
+
+让用户**一眼看出**哪些是 AI 通用规则、哪些是他自己的决定——便于他后悔时知道改什么。
+
+### 6. 危险词清单
 
 | 词 | 为啥危险 | 替换 |
 |---|---|---|
